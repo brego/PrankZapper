@@ -28,14 +28,25 @@ version of it, and saves it in a cache folder.
 * The WordPress activation my not work properly. I'm not a htaccess, nor
   a WordPress expert. It works in my tests though.
 
+Usage
+-----
+
+```
+RewriteRule ^(.+)\.(js|css)$ "/PrankZapper.php?file=$1.$2" [NC,L,QSA]
+```
+
+```
+PrankZapper/index.php?file=style.css
+```
+
 Disclaimer
 ----------
 
 This is an ongoing experiment, and it is in continuous alpha stage, so use it
-at your own risk. If you have comments or suggestions, post an [issue][] contact me through
-[email][brego].
+at your own risk. If you have comments or suggestions, post an [issue][] or
+contact me through [email][].
 
 Enjoy ;)
 
 [issue]: https://github.com/brego/PrankZapper/issues
-[brego]: mailto:brego.dk@gmail.com
+[email]: mailto:brego.dk@gmail.com
