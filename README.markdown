@@ -1,17 +1,19 @@
-PrankZapper - Dynamic packer, minifier & gzipper for Javascript & CSS
-=====================================================================
+PrankZapper - packer, minifier & gzipper for JavaScript & CSS
+=============================================================
 
 Some concepts borrowed from [SmartOptimizer][] by [Ali Farhadi][].
 
 Used packers / minifiers are [CssMin][] and [JavaScriptPacker][] (Nicolas
 Martins PHP port of Dean Edwards' [packer][].)
 
+Some WordPress concepts borrowed from [WP Super Cache][wpsc].
+
 [SmartOptimizer]:   https://github.com/farhadi/SmartOptimizer
 [Ali Farhadi]:      http://farhadi.ir/
 [CssMin]:           http://code.google.com/p/cssmin/
 [JavaScriptPacker]: http://joliclic.free.fr/php/javascript-packer/en/
 [packer]:           http://dean.edwards.name/packer/
-
+[wpsc]:             http://wordpress.org/extend/plugins/wp-super-cache/
 
 What is this?
 -------------
@@ -23,14 +25,17 @@ version of it, and saves it in a cache folder.
   variable to the url (configurable, defaults to "nocache".)
 * The gzipped version of the file will only be created if the client indicates
   that it supports gzip.
+* The WordPress activation my not work properly. I'm not a htaccess, nor
+  a WordPress expert. It works in my tests though.
 
 Disclaimer
-==========
+----------
 
 This is an ongoing experiment, and it is in continuous alpha stage, so use it
-at your own risk. If you have comments or suggestions, contact me through
+at your own risk. If you have comments or suggestions, post an [issue][] contact me through
 [email][brego].
 
 Enjoy ;)
 
+[issue]: https://github.com/brego/PrankZapper/issues
 [brego]: mailto:brego.dk@gmail.com
