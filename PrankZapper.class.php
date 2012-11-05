@@ -68,6 +68,8 @@ class PrankZapper
 
 		$this->setup_out_mtime();
 
+		// if (!$this->is_modified_since || $this->modified_since != $this->out_mtime) {
+		// if (($this->is_modified_since === true) && ($this->modified_since !== $this->out_mtime)) {
 		if (!$this->is_modified_since || $this->modified_since != $this->out_mtime) {
 			header('Last-Modified: '.$this->out_mtime);
 			header('Cache-Control: must-revalidate');
@@ -92,13 +94,15 @@ class PrankZapper
 				}
 
 				$out_content = $this->minify_content($out_content);
-
 				$out_content = $out_content_header.$out_content;
+
+				$preamble   = array();
+				$preamble[] = "/* Compressed by PrankZapper: https://github.com/brego/PrankZapper */";
 				if ($this->config['nocache_link']) {
-					$nocache_link = "/* To access uncompressed version of this file, add '?".$this->config['var_nocache']."' to the url */\n";
-					$out_content  = $nocache_link.$out_content;
+					$preamble[] = "/* To access uncompressed version of this file, add '?".$this->config['var_nocache']."' to the url */";
 				}
-				$out_content .= "\n/* Compressed by PrankZapper - https://github.com/brego/PrankZapper */";
+
+				$out_content = implode("\n", $preamble)."\n".$out_content;
 
 				$out_content = $this->compress_content($out_content);
 				$this->save_cache_file($out_content);
@@ -150,11 +154,10 @@ class PrankZapper
 
 	private function check_nocache() {
 		if (isset($_GET[$this->config['var_nocache']])) {
-			$out_content = file_get_contents($this->file_full_name);
-			header('Content-Length: '.strlen($out_content));
+			header('Content-Length: '.filesize($this->file_full_name));
 			header("Cache-Control: no-cache, must-revalidate");
 			header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
-			echo $out_content;
+			readfile($this->file_full_name);
 			die();
 		}
 	}

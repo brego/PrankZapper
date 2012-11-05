@@ -26,6 +26,7 @@ define('PZAP_MARKER', 'PrankZapper');
 
 if (function_exists('is_admin') === true) {
 	if (is_admin()) {
+		require_once PZAP_DIR.'wp/pzap_functions.php';
 		require_once PZAP_DIR.'wp/pzap_activate.php';
 		require_once PZAP_DIR.'wp/pzap_deactivate.php';
 		register_activation_hook(__FILE__,   'pzap_activate');

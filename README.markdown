@@ -31,12 +31,14 @@ version of it, and saves it in a cache folder.
 Usage
 -----
 
+Using htaccess:
 ```
 RewriteRule ^(.+)\.(js|css)$ "/PrankZapper.php?file=$1.$2" [NC,L,QSA]
 ```
 
+Or directly:
 ```
-PrankZapper/index.php?file=style.css
+/PrankZapper/index.php?file=style.css
 ```
 
 Disclaimer

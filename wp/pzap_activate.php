@@ -54,7 +54,19 @@ function pzap_activate() {
 	$rules[] = "  RewriteRule ^(.+)\.(js|css)$ \"{$inst_root}plugins/PrankZapper/PrankZapper.php?file=$1.$2\" [NC,L,QSA]";
 	$rules[] = "</IfModule>";
 
-	insert_with_markers(ABSPATH.'.htaccess', PZAP_MARKER, $rules);
+	$wp_rules = extract_from_markers(ABSPATH.'.htaccess', 'WordPress');
+	pzap_remove_marker(ABSPATH.'.htaccess', 'WordPress');    // Need to go on top ;)
+
+	if (is_plugin_active('wp-super-cache/wp-cache.php')) {
+		$wpsc_rules = extract_from_markers(ABSPATH.'.htaccess', 'WPSuperCache');
+		pzap_remove_marker(ABSPATH.'.htaccess', 'WPSuperCache'); // Need to go on top ;)
+	}
+
+	insert_with_markers(ABSPATH.'.htaccess', PZAP_MARKER,    $rules);
+	if (isset($wpsc_rules)) {
+		insert_with_markers(ABSPATH.'.htaccess', 'WPSuperCache', $wpsc_rules);
+	}
+	insert_with_markers(ABSPATH.'.htaccess', 'WordPress',    $wp_rules);
 }
 
 ?>
