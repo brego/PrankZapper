@@ -12,6 +12,12 @@
  * This is a WordPress plugin file - it will make PrankZapper work in the
  * WordPress ecosystem.
  * 
+ * The activation function will rewrite the WordPress .htaccess file, to point
+ * all CSS and JavaScript files to this endpoint. They will be minified
+ * compressed and cached.
+ * 
+ * The deactivation function removes those .htaccess rules.
+ * 
  * @package   PrankZapper
  * @author    Kamil "Brego" Dzielinski <brego.dk@gmail.com>
  * @copyright 2011-2012 Kamil "Brego" Dzielinski <brego.dk@gmail.com>

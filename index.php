@@ -5,6 +5,9 @@
  * Some concepts borrowed from SmartOptimizer by Ali Farhadi
  * (http://farhadi.ir/).
  * 
+ * This file is ment for direct, non-WordPress use:
+ * index.php?file=style.css
+ * 
  * Used packers / minifiers are CssMin (http://code.google.com/p/cssmin/) and
  * JavaScriptPacker (Nicolas Martins PHP port of Dean Edwards packer -
  * http://dean.edwards.name/packer/).
